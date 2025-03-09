@@ -38,8 +38,17 @@ public class EmployeeService {
         log.info("Updating employee with ID: {}", id);
         Employee employee = employeeRepository.findById(id)
                 .orElseThrow(() -> new EmployeeNotFoundException("Employee with ID " + id + " not found"));
+
         employee.setName(employeeDTO.getName());
+        employee.setProfileImage(employeeDTO.getProfileImage());
+        employee.setGender(employeeDTO.getGender());
+        employee.setDepartments(employeeDTO.getDepartments());
         employee.setSalary(employeeDTO.getSalary());
+        employee.setStartDay(employeeDTO.getStartDate().getDay());
+        employee.setStartMonth(employeeDTO.getStartDate().getMonth());
+        employee.setStartYear(employeeDTO.getStartDate().getYear());
+        employee.setNotes(employeeDTO.getNotes());
+
         return employeeRepository.save(employee);
     }
 
